@@ -14,7 +14,6 @@ Acceptatie Criteria
 
 •	Als ik op registreren heb gedrukt wordt ik doorgestuurd naar de login pagina waar ik met mijn aangemaakte gebruikersnaam en wachtwoord kan inloggen. 
 
---
 **User story 2**
 --
 Als gebruiker wil ik kunnen inloggen, zodat ik bij mijn boekgegevens te komen. 
@@ -26,7 +25,6 @@ Acceptatie Criteria
 
 •	Als ik succesvol ben ingelogd kom ik op het hoofdscherm waar ik mijn gelezen boeken kan zien. 
 
---
 **User story 3**
 --
 Als gebruiker wil ik al mijn gelezen boeken kunnen zien, zodat ik weet welke boeken ik heb gelezen en wat ik hiervan vond. 
@@ -42,7 +40,6 @@ Acceptatie Criteria
 
 •	Vanuit het hoofdscherm wil ik kunnen navigeren naar een pagina om een nieuw boek toe te voegen met een Voeg nieuw boek toe knop. 
 
---
 **User story 4**
 --
 Als gebruiker wil ik een nieuw boek kunnen toevoegen, zodat ik mijn gelezen boeken up to date kan houden. 
@@ -56,7 +53,6 @@ Acceptatie Criteria
 
 •	Ik kan op de Opslaan knop drukken om mijn boek toe te voegen aan mijn boekenkast. 
 
---
 **User story 5**
 --
 Als gebruiker wil ik op boeken kunnen zoeken, zodat ik snel het boek dat ik wil bekijken kan vinden
@@ -68,7 +64,6 @@ Acceptatie Criteria
 
 •	Ik kan boeken filteren op genre zodat ik alleen boeken zie met het geselecteerde genre.
 
---
 **User story 6**
 --
 Als gebruiker kan ik een boek aanpassen, zodat ik de door mij ingevulde informatie over het gelezen boek kan aanpassen. 
@@ -78,7 +73,6 @@ Acceptatie Criteria
 
 •	Als ik op opslaan druk worden de door mij ingevoerde veranderingen opgeslagen en direct aangepast. 
 
---
 **User story 7**
 --
 Als gebruiker kan ik een boek verwijderen, zodat ik boeken uit mijn boekenkast kan halen.
@@ -86,7 +80,6 @@ Acceptatie Criteria
 
 •	Ik kan via de detailpagina op een knop drukken om mijn boek uit mijn boekenkast te verwijderen. 
 
---
 **User story 8**
 --
 Als systeem haal ik mijn gebruikers en hun boek gegevens op via een API
