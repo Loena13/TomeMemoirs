@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "TomeMemoirs (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "TomeMemoirs (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
