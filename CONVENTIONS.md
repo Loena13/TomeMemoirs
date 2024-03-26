@@ -12,12 +12,6 @@ Zorg dat er wanneer dit de leesbaarheid en flow van de code vebetert gebruik te 
 
 #
 
-**Maak gebruik van Pages**
-
-Dit staat niet ter discussie. Zorg dat wanneer en een nieuwe pagina gemaakt moet worden dit een Page is.
-
-#
-
 **Branches binnen github**
 
 Maak een nieuwe branch aan voor elke nieuwe ticket die je maakt om de branches overzichtelijk te houden.
