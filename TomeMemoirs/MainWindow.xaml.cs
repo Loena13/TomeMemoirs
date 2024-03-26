@@ -10,6 +10,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using TomeMemoirs.Data;
+using TomeMemoirs.Validation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 
@@ -26,11 +28,23 @@ namespace TomeMemoirs
         public MainWindow()
         {
             this.InitializeComponent();
+            using var db = new AppDbContext();
+            //db.Database.EnsureDeleted();
+            db.Database.EnsureCreated();
         }
 
-        private void myButton_Click(object sender, RoutedEventArgs e)
+        private void Login_Click(object sender, RoutedEventArgs e)
         {
-            myButton.Content = "Clicked";
+            var loginWindow = new LoginWindow();
+            loginWindow.Activate();
+            this.Close();
+        }
+
+        private void Register_Click(object sender, RoutedEventArgs e)
+        {
+            var registerWindow = new RegisterWindow();
+            registerWindow.Activate();
+            this.Close();
         }
     }
 }

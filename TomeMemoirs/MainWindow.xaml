@@ -8,7 +8,36 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-        <Button x:Name="myButton" Click="myButton_Click">Click Me</Button>
-    </StackPanel>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="3*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0"
+              Background="SaddleBrown" />
+
+        <Grid Grid.Column="1">
+            <TextBlock Text="TOMEMEMOIRS"
+                       VerticalAlignment="Center"
+                       TextDecorations="Underline"
+                       FontStyle="Italic"
+                       HorizontalAlignment="Center"
+                       FontSize="50" />
+
+            <Button x:Name="Register"
+                    Padding="7"
+                    Margin="70,120,0,0"
+                    HorizontalAlignment="Center"
+                    Content="Register"
+                    Click="Register_Click" />
+
+            <Button x:Name="Login"
+                    Padding="7"
+                    Margin="0,120,70,0"
+                    HorizontalAlignment="Center"
+                    Content="Login"
+                    Click="Login_Click" />
+        </Grid>
+    </Grid>
 </Window>
