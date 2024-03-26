@@ -28,7 +28,7 @@
                     Margin="20"
                     HorizontalAlignment="Center">
 
-            <TextBlock Text="Edit Game"
+            <TextBlock Text="Edit Book"
                        FontSize="50"
                        FontStyle="Italic"
                        TextDecorations="Underline" />
@@ -37,38 +37,63 @@
         <StackPanel Grid.Column="1"
                     Grid.Row="1"
                     HorizontalAlignment="Left"
-                    Margin="20,-30,0,0">
+                    Margin="20,0,0,0">
 
             <TextBox x:Name="tbTitle"
                      Header="Title"
                      Margin="0,0,0,10"
-                     PlaceholderText="Please enter a T\title" />
+                     PlaceholderText="Please enter a title" />
 
-            <StackPanel Orientation="Horizontal">
-                
-                <TextBox x:Name="tbAuthor"
-                         Header="Author:"
-                         Margin="5,0,5,0"
-                         PlaceholderText="Please enter a author" />
+            <TextBox x:Name="tbAuthor"
+                     Header="Author"
+                     Margin="0,10,0,20"
+                     PlaceholderText="Please enter a author" />
 
-                <TextBox x:Name="tbRating"
-                         Header="Rating"
-                         Margin="5,10,5,0"
-                         PlaceholderText="Please enter a rating" />
+            <TextBox x:Name="tbRating"
+                     Header="Rating"
+                     Margin="0,10,0,20"
+                     PlaceholderText="Please enter a rating" />
 
-                <TextBox x:Name="tbPublicationdate"
-                         Header="Publicationdate:"
-                         Margin="5,0,5,0"
-                         PlaceholderText="Please enter a publicationdate" />
-            </StackPanel>
+            <TextBox x:Name="tbPublicationDate"
+                     Header="Publication Date"
+                     Margin="0,0,0,10"
+                     PlaceholderText="Please enter a publication date" />
 
             <Button Content="Edit"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
                     Width="300"
                     Margin="5,20,5,0"
-                    Name="BEditGame"
-                    Click="BEditGame_Click" />
+                    Name="bEditGame"
+                    Click="bEditGame_Click_1" />
         </StackPanel>
+        
+        <ContentDialog x:Name="cdTitleDialog"
+                       Title="Entered Invalid Title"
+                       CloseButtonText="Close">
+            <TextBlock Text="!Title was empty or invalid. Please check title input to see if the information was entered correctly!"
+                       TextDecorations="Underline" />
+        </ContentDialog>
+
+        <ContentDialog x:Name="cdAuthorDialog"
+                       Title="Entered Invalid Author"
+                       CloseButtonText="Close">
+            <TextBlock Text="!Author was empty or invalid. Please check author input to see if the information was entered correctly!"
+                       TextDecorations="Underline" />
+        </ContentDialog>
+
+        <ContentDialog x:Name="cdPublicationDateDialog"
+                       Title="Entered Invalid Publication Date"
+                       CloseButtonText="Close">
+            <TextBlock Text="!Publication Date was empty or invalid. Please check publication date input to see if the information was entered correctly!"
+                       TextDecorations="Underline" />
+        </ContentDialog>
+
+        <ContentDialog x:Name="cdRatingDialog"
+                       Title="Entered Invalid Rating"
+                       CloseButtonText="Close">
+            <TextBlock Text="!Rating was empty or invalid. Please check rating input to see if the information was entered correctly!"
+                       TextDecorations="Underline" />
+        </ContentDialog>
     </Grid>
 </Window>

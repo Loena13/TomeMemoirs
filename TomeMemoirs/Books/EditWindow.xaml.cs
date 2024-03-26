@@ -16,6 +16,7 @@ using TomeMemoirs.Model;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 using System.Xml.Linq;
 using TomeMemoirs.Data;
+using System.Threading.Tasks;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -42,16 +43,23 @@ namespace TomeMemoirs.Books
             {
                 tbTitle.Text = clickedBook.Title;
                 tbAuthor.Text = clickedBook.Author;
-                tbPublicationdate.Text = clickedBook.PublicationDate.ToString();
+                tbPublicationDate.Text = clickedBook.PublicationDate.ToString();
                 tbRating.Text = bookUser.Rating.ToString();
             }
         }
 
-        private void BEditGame_Click(object sender, RoutedEventArgs e)
+        private async void bEditGame_Click_1(object sender, RoutedEventArgs e)
         {
             using var db = new AppDbContext();
 
             var clickedBook = db.Books.Find(_clickedBook.Id);
+
+            // Valideer elk invoerveld afzonderlijk
+            if (!await ValidateTitle() || !await ValidateAuthor() ||
+                !await ValidateReleaseDate() || !await ValidateRating())
+            {
+                return; // Stop de methode als een invoer ongeldig is
+            }
 
             // Zoeken naar de bijbehorende BookUser
             var bookUser = db.BookUsers.FirstOrDefault(bu => bu.BookId == clickedBook.Id);
@@ -62,6 +70,10 @@ namespace TomeMemoirs.Books
                 bookUser = new BookUser();
                 db.BookUsers.Add(bookUser);
             }
+            else
+            {
+
+            }
 
             // Boekgebruiker bijwerken met de nieuwe beoordeling
             bookUser.Rating = int.Parse(tbRating.Text);
@@ -71,11 +83,57 @@ namespace TomeMemoirs.Books
 
             clickedBook.Title = tbTitle.Text;
             clickedBook.Author = tbAuthor.Text;
-            clickedBook.PublicationDate = DateTime.Parse(tbPublicationdate.Text);
+            clickedBook.PublicationDate = DateTime.Parse(tbPublicationDate.Text);
 
             db.SaveChanges();
             this.Close();
         }
+        private async Task<bool> ValidateTitle()
+        {
+            // Valideer invoervelden
+            if (string.IsNullOrWhiteSpace(tbTitle.Text))
+            {
+                await cdTitleDialog.ShowAsync();
+                return false; // Ongeldige invoer
+            }
 
+            return true; // Invoer is geldig
+        }
+
+        private async Task<bool> ValidateAuthor()
+        {
+            // Valideer invoervelden
+            if (string.IsNullOrWhiteSpace(tbAuthor.Text))
+            {
+                await cdAuthorDialog.ShowAsync();
+                return false; // Ongeldige invoer
+            }
+
+            return true; // Invoer is geldig
+        }
+
+        private async Task<bool> ValidateReleaseDate()
+        {
+            // Valideer invoervelden
+            if (string.IsNullOrWhiteSpace(tbPublicationDate.Text))
+            {
+                await cdPublicationDateDialog.ShowAsync();
+                return false; // Ongeldige invoer
+            }
+
+            return true; // Invoer is geldig
+        }
+
+        private async Task<bool> ValidateRating()
+        {
+            // Valideer invoervelden
+            if (!int.TryParse(tbRating.Text, out _))
+            {
+                await cdRatingDialog.ShowAsync();
+                return false; // Ongeldige invoer
+            }
+
+            return true; // Invoer is geldig
+        }
     }
 }
