@@ -136,25 +136,54 @@ var gingerbread = new ProductenWindow();
 
  **Foutafhandeling**
   
-  Zorg voor goede foutafhandeling, inclusief het afvangen en registreren van uitzonderingen.
-
-  Gebruik duidelijke foutberichten.
+Zorg voor een uitgebreiden en zorgvuldige error afhandeling. Maak het zo uitgebreid mogenlijk en zorg voor duidelijke meldingen.
 
   *Voorbeeld van een goede manier om dit te doen:*
+  ```XML
+    <ContentDialog x:Name="cdAuthorDialog"
+                    Title="Entered Invalid Author"
+                    CloseButtonText="Close">
+        <TextBlock Text="!Author was empty or invalid. Please check author input to see if the information was entered correctly!"
+                    TextDecorations="Underline" />
+    </ContentDialog>
+  ```
+
    ```C#
-  else
+  private async Task<bool> ValidateAuthor()
   {
-    ErrorTextBlock.Text = "Ongeldige inloggegevens";
-  }
+    // Valideer invoervelden
+    if (string.IsNullOrWhiteSpace(tbAuthor.Text))
+    {
+        await cdAuthorDialog.ShowAsync();
+        return false; // Ongeldige invoer
+    }
+
+    return true; // Invoer is geldig
+  } 
   ```
 
   *Voorbeeld van een foute manier om dit te doen:*
-   ```C#
-  else
-  {
-    ErrorTextBlock.Text = "ERROR";
-  }
+  ```XML
+    <ContentDialog x:Name="cdAuthorDialog"
+                    Title="Entered Invalid Information"
+                    CloseButtonText="Close">
+        <TextBlock Text="!ERROR!"
+                    TextDecorations="Underline" />
+    </ContentDialog>
   ```
+  
+   ```C#
+  private async Task<bool> ValidateAuthor()
+  {
+    // Valideer invoervelden
+    if (string.IsNullOrWhiteSpace(tbAuthor.Text))
+    {
+        await cdAuthorDialog.ShowAsync();
+        return false; // Ongeldige invoer
+    }
 
+    return true; // Invoer is geldig
+  } 
+  ```
   #
 
