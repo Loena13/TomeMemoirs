@@ -31,7 +31,7 @@ namespace TomeMemoirs.Validation
         {
             this.InitializeComponent();
         }
-        private async void BLogin_Click(object sender, RoutedEventArgs e)
+        private async void bLogin_Click_1(object sender, RoutedEventArgs e)
         {
             string username = tbUsername.Text;
             string password = pbPassword.Password;
@@ -44,11 +44,12 @@ namespace TomeMemoirs.Validation
 
             if (user != null)
             {
+                User.LoggedInUser = user;
+
                 bool isValidUser = SecureHasher.Verify(password, user.HashedPassWord);
                 if (isValidUser)
                 {
                     HomeWindow home = new HomeWindow();
-                    home.LoggedInUser = user;
                     home.Activate();
                     this.Close();
                 }

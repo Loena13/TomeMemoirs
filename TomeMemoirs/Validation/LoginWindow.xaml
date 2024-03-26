@@ -39,9 +39,9 @@
                              Margin="0,0,0,10" />
 
                 <Button Content="Login"
-                        x:Name="BLogin"
+                        x:Name="bLogin"
                         Width="150"
-                        Click="BLogin_Click"
+                        Click="bLogin_Click_1"
                         Margin="0,10,0,0"
                         Padding="7" />
             </StackPanel>
