@@ -16,6 +16,8 @@ using TomeMemoirs.Data;
 using System.Xml.Linq;
 using TomeMemoirs.Model;
 using System.Diagnostics;
+using Microsoft.EntityFrameworkCore.Update;
+using System.Threading.Tasks;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -32,28 +34,98 @@ namespace TomeMemoirs.Books
             this.InitializeComponent();
         }
 
-        private void BAddBook_Click(object sender, RoutedEventArgs e)
+        private async void BAddBook_Click(object sender, RoutedEventArgs e)
         {
             using var db = new AppDbContext();
 
-            // Maak een nieuwe BookUser
-            var bookUser = new BookUser
+            // Valideer elk invoerveld afzonderlijk
+            if (!await ValidateTitle() || !await ValidateAuthor() ||
+                !await ValidateReleaseDate() || !await ValidateRating())
             {
-                Rating = int.Parse(tbRating.Text),
-            };
+                return; // Stop de methode als een invoer ongeldig is
+            }
+
+            var bookUser = new BookUser();
+            if (int.TryParse(tbRating.Text, out int rating))
+            {
+                bookUser.UserId = User.LoggedInUser.Id;
+                bookUser.Rating = rating;
+            }
+            else
+            {
+                // Behandel het mislukken van het parsen voor de beoordeling
+                await cdRatingDialog.ShowAsync();
+                return;
+            }
 
             var newBook = new Book
             {
+                Id = GenerateRandomId(), // Genereer een willekeurig ID
                 Title = tbTitle.Text,
                 Author = tbAuthor.Text,
                 PublicationDate = dbPublicationDate.SelectedDate.Value.DateTime,
-                BookUser = bookUser // Associeert de boekuser met de klasse
+                BookUser = bookUser // Koppel de boekgebruiker aan de klasse
             };
 
             db.Books.Add(newBook);
 
             db.SaveChanges();
             this.Close();
+        }
+
+        private async Task<bool> ValidateTitle()
+        {
+            // Valideer invoervelden
+            if (string.IsNullOrWhiteSpace(tbTitle.Text))
+            {
+                await cdTitleDialog.ShowAsync();
+                return false; // Ongeldige invoer
+            }
+
+            return true; // Invoer is geldig
+        }
+
+        private async Task<bool> ValidateAuthor()
+        {
+            // Valideer invoervelden
+            if (string.IsNullOrWhiteSpace(tbAuthor.Text))
+            {
+                await cdAuthorDialog.ShowAsync();
+                return false; // Ongeldige invoer
+            }
+
+            return true; // Invoer is geldig
+        }
+
+        private async Task<bool> ValidateReleaseDate()
+        {
+            // Valideer invoervelden
+            if (dbPublicationDate.SelectedDate == null)
+            {
+                await cdPublicationDateDialog.ShowAsync();
+                return false; // Ongeldige invoer
+            }
+
+            return true; // Invoer is geldig
+        }
+
+        private async Task<bool> ValidateRating()
+        {
+            // Valideer invoervelden
+            if (!int.TryParse(tbRating.Text, out _))
+            {
+                await cdRatingDialog.ShowAsync();
+                return false; // Ongeldige invoer
+            }
+
+            return true; // Invoer is geldig
+        }
+
+        private int GenerateRandomId()
+        {
+            // Genereer een willekeurige integer ID
+            Random random = new Random();
+            return random.Next();
         }
     }
 }

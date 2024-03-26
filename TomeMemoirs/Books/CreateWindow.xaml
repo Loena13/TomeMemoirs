@@ -56,6 +56,7 @@
                      PlaceholderText="Please enter a rating" />
 
             <DatePicker x:Name="dbPublicationDate"
+                        Header="Publication Date"
                         HorizontalAlignment="Center"
                         Margin="0,0,0,10" />
 
@@ -66,5 +67,33 @@
                     Name="BAddBook"
                     Click="BAddBook_Click" />
         </StackPanel>
+
+        <ContentDialog x:Name="cdTitleDialog"
+                       Title="Entered Invalid Title"
+                       CloseButtonText="Close">
+            <TextBlock Text="!Title was empty or invalid. Please check title input to see if the information was entered correctly!"
+                       TextDecorations="Underline" />
+        </ContentDialog>
+        
+        <ContentDialog x:Name="cdAuthorDialog"
+                       Title="Entered Invalid Author"
+                       CloseButtonText="Close">
+            <TextBlock Text="!Author was empty or invalid. Please check author input to see if the information was entered correctly!"
+                       TextDecorations="Underline" />
+        </ContentDialog>
+        
+        <ContentDialog x:Name="cdPublicationDateDialog"
+                       Title="Entered Invalid Publication Date"
+                       CloseButtonText="Close">
+            <TextBlock Text="!Publication Date was empty or invalid. Please check publication date input to see if the information was entered correctly!"
+                       TextDecorations="Underline" />
+        </ContentDialog>
+        
+        <ContentDialog x:Name="cdRatingDialog"
+                       Title="Entered Invalid Rating"
+                       CloseButtonText="Close">
+            <TextBlock Text="!Rating was empty or invalid. Please check rating input to see if the information was entered correctly!"
+                       TextDecorations="Underline" />
+        </ContentDialog>
     </Grid>
 </Window>
