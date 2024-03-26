@@ -17,11 +17,10 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Column="0"
-                    Grid.RowSpan="4"
+                    Grid.RowSpan="2"
                     Background="SaddleBrown">
 
             <Button Name="bBack"
@@ -31,12 +30,12 @@
                     Margin="10"
                     Content="Back" />
 
-            <!--<Button Name="bAuthor"
+            <Button Name="bAuthor"
                     Click="bAuthor_Click"
                     Background="BlanchedAlmond"
                     Foreground="Black"
                     Margin="10"
-                    Content="Go to Author page" />-->
+                    Content="Go to Author page" />
         </StackPanel>
 
         <StackPanel Grid.Column="1"
@@ -55,15 +54,20 @@
             <TextBox TextChanged="tbSearch_TextChanged"
                      x:Name="tbSearch" />
 
-            <Button x:Name="bAddBook"
-                    Click="bAddBook_Click"
-                    Content="Add Book"
-                    Width="200" />
+            <StackPanel Orientation="Horizontal"
+                        Spacing="10">
+                <Button x:Name="bAddBook"
+                        Click="bAddBook_Click"
+                        HorizontalAlignment="Left"
+                        Content="Add Book"
+                        Width="200" />
 
-            <Button Name="bDelete"
-                    Click="bDelete_Click"
-                    Content="Delete Game"
-                    Width="200" />
+                <Button Name="bDelete"
+                        Click="bDelete_Click"
+                        HorizontalAlignment="Right"
+                        Content="Delete Book"
+                        Width="200" />
+            </StackPanel>
         </StackPanel>
 
         <ListView x:Name="lvBook"

@@ -25,8 +25,7 @@ namespace TomeMemoirs.Books
     /// An empty window that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class HomeWindow : Window
-    {
-        public User LoggedInUser;
+    { 
         public HomeWindow()
         {
             this.InitializeComponent();
